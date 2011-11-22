@@ -1,0 +1,213 @@
+<!DOCTYPE QtCreatorProject>
+<qtcreator>
+ <data>
+  <variable>RunConfiguration0-CommandLineArguments</variable>
+  <valuelist type="QVariantList" />
+ </data>
+ <data>
+  <variable>RunConfiguration0-ProFile</variable>
+  <value type="QString" >geoloqi.pro</value>
+ </data>
+ <data>
+  <variable>RunConfiguration0-RunConfiguration.name</variable>
+  <value type="QString" >geoloqi</value>
+ </data>
+ <data>
+  <variable>RunConfiguration0-UseDyldImageSuffix</variable>
+  <value type="bool" >false</value>
+ </data>
+ <data>
+  <variable>RunConfiguration0-UseTerminal</variable>
+  <value type="bool" >false</value>
+ </data>
+ <data>
+  <variable>RunConfiguration0-UserEnvironmentChanges</variable>
+  <valuelist type="QVariantList" />
+ </data>
+ <data>
+  <variable>RunConfiguration0-UserSetName</variable>
+  <value type="bool" >false</value>
+ </data>
+ <data>
+  <variable>RunConfiguration0-type</variable>
+  <value type="QString" >Qt4ProjectManager.Qt4RunConfiguration</value>
+ </data>
+ <data>
+  <variable>activeRunConfiguration</variable>
+  <value type="int" >0</value>
+ </data>
+ <data>
+  <variable>activebuildconfiguration</variable>
+  <value type="QString" >Debug</value>
+ </data>
+ <data>
+  <variable>buildConfiguration-Debug</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
+   <value key="QtVersionId" type="int" >2</value>
+   <value key="addQDumper" type="" ></value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildconfiguration-Debug-buildstep0</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
+   <valuelist key="abstractProcess.Environment" type="QVariantList" >
+    <value type="QString" >CAKE_HOME=/usr/local/lib/cake</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-CKpdHs7ncI,guid=07486358c41a2b3d543519fa4ec5a1d2</value>
+    <value type="QString" >DEFAULTS_PATH=/usr/share/gconf/gnome.default.path</value>
+    <value type="QString" >DESKTOP_SESSION=gnome</value>
+    <value type="QString" >DESKTOP_STARTUP_ID=</value>
+    <value type="QString" >DISPLAY=:0.0</value>
+    <value type="QString" >EC2_CERT=/home/jillian/.ec2/dreamfish/cert-GKU2LADXOF7DDJYYIL5P3CB36SERNPLO.pem</value>
+    <value type="QString" >EC2_HOME=/home/jillian/bin/ec2-api-tools-1.3-57419</value>
+    <value type="QString" >EC2_PRIVATE_KEY=/home/jillian/.ec2/dreamfish/pk-GKU2LADXOF7DDJYYIL5P3CB36SERNPLO.pem</value>
+    <value type="QString" >GDMSESSION=gnome</value>
+    <value type="QString" >GDM_KEYBOARD_LAYOUT=us</value>
+    <value type="QString" >GDM_LANG=en_US.UTF-8</value>
+    <value type="QString" >GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
+    <value type="QString" >GNOME_KEYRING_CONTROL=/tmp/keyring-1pWkXg</value>
+    <value type="QString" >GPG_AGENT_INFO=/tmp/seahorse-9PU6IU/S.gpg-agent:1324:1</value>
+    <value type="QString" >GTK_MODULES=canberra-gtk-module</value>
+    <value type="QString" >HOME=/home/jillian</value>
+    <value type="QString" >JAVA_HOME=/home/jillian/bin/jdk1.6.0_14</value>
+    <value type="QString" >LANG=en_US.UTF-8</value>
+    <value type="QString" >LD_LIBRARY_PATH=/opt/qtsdk-2009.04/lib/qtcreator:</value>
+    <value type="QString" >LOGNAME=jillian</value>
+    <value type="QString" >MANDATORY_PATH=/usr/share/gconf/gnome.mandatory.path</value>
+    <value type="QString" >ORBIT_SOCKETDIR=/tmp/orbit-jillian</value>
+    <value type="QString" >PATH=/usr/bin:/home/jillian/bin/ec2-api-tools-1.3-57419/bin:/usr/local/lib/cake/console:/home/jillian/bin/scala-2.7.7.final/bin:/home/jillian/bin/jdk1.6.0_14/bin:/home/jillian/bin/depot_tools:/home/jillian/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games</value>
+    <value type="QString" >PWD=/home/jillian</value>
+    <value type="QString" >QTDIR=/usr</value>
+    <value type="QString" >RUBYOPT=rubygems</value>
+    <value type="QString" >SCALA_HOME=/home/jillian/bin/scala-2.7.7.final</value>
+    <value type="QString" >SESSION_MANAGER=local/jillian-laptop:@/tmp/.ICE-unix/1161,unix/jillian-laptop:/tmp/.ICE-unix/1161</value>
+    <value type="QString" >SHELL=/bin/bash</value>
+    <value type="QString" >SPEECHD_PORT=7560</value>
+    <value type="QString" >SSH_AUTH_SOCK=/tmp/keyring-1pWkXg/ssh</value>
+    <value type="QString" >USER=jillian</value>
+    <value type="QString" >USERNAME=jillian</value>
+    <value type="QString" >XAUTHORITY=/var/run/gdm/auth-for-jillian-c3OLLR/database</value>
+    <value type="QString" >XDG_CONFIG_DIRS=/etc/xdg/xdg-gnome:/etc/xdg</value>
+    <value type="QString" >XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share/:/usr/share/</value>
+    <value type="QString" >XDG_SESSION_COOKIE=f6030a8853364810a61332314a5e6e57-1321574862.645367-411022421</value>
+   </valuelist>
+   <valuelist key="abstractProcess.arguments" type="QVariantList" >
+    <value type="QString" >/home/jillian/workspace/qt_projects/geoloqi/geoloqi.pro</value>
+    <value type="QString" >-spec</value>
+    <value type="QString" >/usr/share/qt4/mkspecs/linux-g++</value>
+    <value type="QString" >-r</value>
+    <value type="QString" >CONFIG+=debug</value>
+   </valuelist>
+   <value key="abstractProcess.command" type="QString" >/usr/bin/qmake-qt4</value>
+   <value key="abstractProcess.enabled" type="bool" >false</value>
+   <value key="abstractProcess.workingDirectory" type="QString" >/home/jillian/workspace/qt_projects/geoloqi</value>
+   <value key="buildConfiguration" type="int" >2</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildconfiguration-Debug-buildstep1</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
+   <valuelist key="abstractProcess.Environment" type="QVariantList" >
+    <value type="QString" >CAKE_HOME=/usr/local/lib/cake</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-CKpdHs7ncI,guid=07486358c41a2b3d543519fa4ec5a1d2</value>
+    <value type="QString" >DEFAULTS_PATH=/usr/share/gconf/gnome.default.path</value>
+    <value type="QString" >DESKTOP_SESSION=gnome</value>
+    <value type="QString" >DESKTOP_STARTUP_ID=</value>
+    <value type="QString" >DISPLAY=:0.0</value>
+    <value type="QString" >EC2_CERT=/home/jillian/.ec2/dreamfish/cert-GKU2LADXOF7DDJYYIL5P3CB36SERNPLO.pem</value>
+    <value type="QString" >EC2_HOME=/home/jillian/bin/ec2-api-tools-1.3-57419</value>
+    <value type="QString" >EC2_PRIVATE_KEY=/home/jillian/.ec2/dreamfish/pk-GKU2LADXOF7DDJYYIL5P3CB36SERNPLO.pem</value>
+    <value type="QString" >GDMSESSION=gnome</value>
+    <value type="QString" >GDM_KEYBOARD_LAYOUT=us</value>
+    <value type="QString" >GDM_LANG=en_US.UTF-8</value>
+    <value type="QString" >GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
+    <value type="QString" >GNOME_KEYRING_CONTROL=/tmp/keyring-1pWkXg</value>
+    <value type="QString" >GPG_AGENT_INFO=/tmp/seahorse-9PU6IU/S.gpg-agent:1324:1</value>
+    <value type="QString" >GTK_MODULES=canberra-gtk-module</value>
+    <value type="QString" >HOME=/home/jillian</value>
+    <value type="QString" >JAVA_HOME=/home/jillian/bin/jdk1.6.0_14</value>
+    <value type="QString" >LANG=en_US.UTF-8</value>
+    <value type="QString" >LD_LIBRARY_PATH=/opt/qtsdk-2009.04/lib/qtcreator:</value>
+    <value type="QString" >LOGNAME=jillian</value>
+    <value type="QString" >MANDATORY_PATH=/usr/share/gconf/gnome.mandatory.path</value>
+    <value type="QString" >ORBIT_SOCKETDIR=/tmp/orbit-jillian</value>
+    <value type="QString" >PATH=/usr/bin:/home/jillian/bin/ec2-api-tools-1.3-57419/bin:/usr/local/lib/cake/console:/home/jillian/bin/scala-2.7.7.final/bin:/home/jillian/bin/jdk1.6.0_14/bin:/home/jillian/bin/depot_tools:/home/jillian/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games</value>
+    <value type="QString" >PWD=/home/jillian</value>
+    <value type="QString" >QTDIR=/usr</value>
+    <value type="QString" >RUBYOPT=rubygems</value>
+    <value type="QString" >SCALA_HOME=/home/jillian/bin/scala-2.7.7.final</value>
+    <value type="QString" >SESSION_MANAGER=local/jillian-laptop:@/tmp/.ICE-unix/1161,unix/jillian-laptop:/tmp/.ICE-unix/1161</value>
+    <value type="QString" >SHELL=/bin/bash</value>
+    <value type="QString" >SPEECHD_PORT=7560</value>
+    <value type="QString" >SSH_AUTH_SOCK=/tmp/keyring-1pWkXg/ssh</value>
+    <value type="QString" >USER=jillian</value>
+    <value type="QString" >USERNAME=jillian</value>
+    <value type="QString" >XAUTHORITY=/var/run/gdm/auth-for-jillian-c3OLLR/database</value>
+    <value type="QString" >XDG_CONFIG_DIRS=/etc/xdg/xdg-gnome:/etc/xdg</value>
+    <value type="QString" >XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share/:/usr/share/</value>
+    <value type="QString" >XDG_SESSION_COOKIE=f6030a8853364810a61332314a5e6e57-1321574862.645367-411022421</value>
+   </valuelist>
+   <valuelist key="abstractProcess.arguments" type="QVariantList" >
+    <value type="QString" >-w</value>
+   </valuelist>
+   <value key="abstractProcess.command" type="QString" >/usr/bin/make</value>
+   <value key="abstractProcess.enabled" type="bool" >true</value>
+   <value key="abstractProcess.workingDirectory" type="QString" >/home/jillian/workspace/qt_projects/geoloqi</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildconfiguration-Debug-cleanstep0</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildconfigurations</variable>
+  <valuelist type="QVariantList" >
+   <value type="QString" >Debug</value>
+  </valuelist>
+ </data>
+ <data>
+  <variable>buildstep0</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" ></value>
+   <value key="mkspec" type="QString" ></value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildstep1</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" ></value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildsteps</variable>
+  <valuelist type="QVariantList" >
+   <value type="QString" >trolltech.qt4projectmanager.qmake</value>
+   <value type="QString" >trolltech.qt4projectmanager.make</value>
+  </valuelist>
+ </data>
+ <data>
+  <variable>cleanstep0</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" ></value>
+   <value key="clean" type="bool" >true</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>cleansteps</variable>
+  <valuelist type="QVariantList" >
+   <value type="QString" >trolltech.qt4projectmanager.make</value>
+  </valuelist>
+ </data>
+ <data>
+  <variable>defaultFileEncoding</variable>
+  <value type="QByteArray" >System</value>
+ </data>
+ <data>
+  <variable>project</variable>
+  <valuemap type="QVariantMap" />
+ </data>
+</qtcreator>
