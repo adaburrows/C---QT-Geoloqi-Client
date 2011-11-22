@@ -1,0 +1,5 @@
+*.o
+moc*.*
+config_vars.h
+geoloqi.pro
+geoloqi.pro.user
