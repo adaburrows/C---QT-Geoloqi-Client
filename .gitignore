@@ -1,3 +1,6 @@
 *.o
 moc*.*
-config_vars.h
+Makefile
+geoloqi
+*.pro.user
+*.pro.user.*
