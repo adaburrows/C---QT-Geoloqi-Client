@@ -7,8 +7,10 @@ TEMPLATE = app
 SOURCES += main.cpp \
    loqiwindow.cpp \
    qgeoloqi.cpp \
-   qgeoloqireply.cpp
+   qgeoloqireply.cpp \
+    authdialog.cpp
 HEADERS += loqiwindow.h \
    qgeoloqi.h \
-   qgeoloqireply.h
+   qgeoloqireply.h \
+    authdialog.h
 LIBS += -lqjson
