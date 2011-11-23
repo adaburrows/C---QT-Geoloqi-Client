@@ -1,7 +1,5 @@
 #include "qgeoloqi.h"
 
-
-
 /*
  * Contructors and related functions.
  * ============================================================================
@@ -25,7 +23,6 @@ void QGeoloqi::QGeoloqiCommon()
     this->client_id = QString("");
     this->client_secret = QString("");
     this->manager = new QNetworkAccessManager();
-    connect(this->manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(processReply(QNetworkReply*)));
     connect(this->manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), this, SLOT(sslErrors(QNetworkReply*, QList<QSslError>)));
 }
 
@@ -45,7 +42,7 @@ void QGeoloqi::setClientSecret(QString client_secret) {
 }
 
 // Get the auth token using geoloqi username and password
-void QGeoloqi::getAuthToken(QString user, QString pass) {
+QGeoloqiReply* QGeoloqi::getAuthToken(QString user, QString pass) {
     // Set up the parameters fo be sen URL Encoded
     QVector<QPair<QString,QString> > payloadData;
     payloadData.push_back(QPair<QString,QString>(QString("grant_type"), QString("password")));
@@ -58,8 +55,9 @@ void QGeoloqi::getAuthToken(QString user, QString pass) {
     QUrl url = QUrl(this->api_url % QString("oauth/token"));
     QNetworkRequest request = QNetworkRequest(url);
     QNetworkReply* reply = manager->post(request,payload);
-
-    connect(reply, SIGNAL(finished()), this, SLOT(AuthTokenReady()));
+    QGeoloqiReply* loqiply = new QGeoloqiReply(reply);
+    connect(reply, SIGNAL(finished()), loqiply, SLOT(processReply()));
+    return loqiply;
 }
 
 QString QGeoloqi::getToken() {
@@ -70,40 +68,44 @@ void QGeoloqi::setToken(QString token) {
     this->token = token;
 }
 
-void QGeoloqi::getUsername() {
+QGeoloqiReply* QGeoloqi::getUsername() {
     QUrl url = QUrl(this->api_url % QString("account/username"));
     url.addQueryItem(QString("oauth_token"), this->token);
     QNetworkRequest request = QNetworkRequest(url);
     QNetworkReply* reply = manager->get(request);
-
-    connect(reply, SIGNAL(finished()), this, SLOT(UsernameReady()));
+    QGeoloqiReply* loqiply = new QGeoloqiReply(reply);
+    connect(reply, SIGNAL(finished()), loqiply, SLOT(processReply()));
+    return loqiply;
 }
 
-void QGeoloqi::getProfile() {
+QGeoloqiReply* QGeoloqi::getProfile() {
     QUrl url = QUrl(this->api_url % QString("account/profile"));
     url.addQueryItem(QString("oauth_token"), this->token);
     QNetworkRequest request = QNetworkRequest(url);
     QNetworkReply* reply = manager->get(request);
-
-    connect(reply, SIGNAL(finished()), this, SLOT(ProfileReady()));
+    QGeoloqiReply* loqiply = new QGeoloqiReply(reply);
+    connect(reply, SIGNAL(finished()), loqiply, SLOT(processReply()));
+    return loqiply;
 }
 
-void QGeoloqi::getLastLocation() {
+QGeoloqiReply* QGeoloqi::getLastLocation() {
     QUrl url = QUrl(this->api_url % QString("location/last"));
     url.addQueryItem(QString("oauth_token"), this->token);
     QNetworkRequest request = QNetworkRequest(url);
     QNetworkReply* reply = manager->get(request);
-
-    connect(reply, SIGNAL(finished()), this, SLOT(LastLocationReady()));
+    QGeoloqiReply* loqiply = new QGeoloqiReply(reply);
+    connect(reply, SIGNAL(finished()), loqiply, SLOT(processReply()));
+    return loqiply;
 }
 
-void QGeoloqi::getHistory() {
+QGeoloqiReply* QGeoloqi::getHistory() {
     QUrl url = QUrl(this->api_url % QString("location/history"));
     url.addQueryItem(QString("oauth_token"), this->token);
     QNetworkRequest request = QNetworkRequest(url);
     QNetworkReply* reply = manager->get(request);
-
-    connect(reply, SIGNAL(finished()), this, SLOT(HistoryReady()));
+    QGeoloqiReply* loqiply = new QGeoloqiReply(reply);
+    connect(reply, SIGNAL(finished()), loqiply, SLOT(processReply()));
+    return loqiply;
 }
 
 
@@ -153,47 +155,11 @@ QVector<QPair<QString,QString> > QGeoloqi::decodeUrlEncoded(QByteArray data) {
     return items;
 }
 
+
 /*
  * Slots
  * ============================================================================
  */
-
-void QGeoloqi::processReply(QNetworkReply* reply) {
-    QTextStream out(stdout);
-    QVariant content;
-
-    // Get the original request to see what request type this reply is for
-    QNetworkRequest request = reply->request();
-
-    // Read in the response and check content
-    QByteArray response = reply->readAll();
-    out << QString(response);
-    QVariant contentType = reply->header(QNetworkRequest::ContentTypeHeader);
-    if (contentType.isValid()) {
-        QString cType = contentType.toString();
-        if (cType == QString("application/json")) {
-            content = decodeJson(response);
-        } else {
-            content = QVariant();
-            out << QString("Got invalid Content-Type: %1\n").arg(QString(response));
-            emit onError();
-        }
-    }
-    // If we've gotten valid content, process it and dispatch the signal
-    if (content.isValid()) {
-        QVariantMap data = content.toMap();
-        // Each operation responds to a different signal
-        switch (reply->operation()) {
-            case QNetworkAccessManager::GetOperation:
-            case QNetworkAccessManager::PutOperation:
-            case QNetworkAccessManager::PostOperation:
-            case QNetworkAccessManager::DeleteOperation:
-            default:
-              out << data["username"].toString() << "\n";
-        }
-    }
-    reply->deleteLater();
-}
 
 void QGeoloqi::sslErrors(QNetworkReply * reply, QList<QSslError> errors) {
     QTextStream out(stdout);
@@ -204,29 +170,4 @@ void QGeoloqi::sslErrors(QNetworkReply * reply, QList<QSslError> errors) {
         out << QString("SSL Error: %1\n").arg(errorIterator.next().errorString());
     }
     out << QString("%1 SSL Errors.\n").arg(errors.length());
-}
-
-void QGeoloqi::AuthTokenReady() {
-    QTextStream out(stdout);
-    out << "AuthToken Ready.\n";
-}
-
-void QGeoloqi::UsernameReady() {
-    QTextStream out(stdout);
-    out << "Username Ready.\n";
-}
-
-void QGeoloqi::ProfileReady() {
-    QTextStream out(stdout);
-    out << "Profile Ready.\n";
-}
-
-void QGeoloqi::LastLocationReady() {
-    QTextStream out(stdout);
-    out << "Last Location Ready.\n";
-}
-
-void QGeoloqi::HistoryReady() {
-    QTextStream out(stdout);
-    out << "History Ready.\n";
 }
