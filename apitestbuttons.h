@@ -11,11 +11,7 @@ class ApiTestButtons : public QWidget
 public:
     explicit ApiTestButtons(QWidget *parent = 0);
     QVBoxLayout *buttonLayout;
-    QPushButton *getAuthTokenButton;
-    QPushButton *setClientIdButton;
-    QPushButton *setClientSecretButton;
-    QPushButton *getTokenButton;
-    QPushButton *setTokenButton;;
+    //QPushButton *getAuthTokenButton;
     QPushButton *getUsernameButton;
     QPushButton *getProfileButton;
     QPushButton *getLastLocationButton;

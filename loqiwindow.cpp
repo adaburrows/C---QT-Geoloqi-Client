@@ -24,7 +24,9 @@ LoqiWindow::LoqiWindow(QWidget *parent)
     addDockWidget(Qt::RightDockWidgetArea,testButtonDock);
 
     connect(testButtons->getUsernameButton, SIGNAL(clicked()), this, SLOT(onGetUsername()));
-
+    connect(testButtons->getProfileButton, SIGNAL(clicked()), this, SLOT(onGetProfile()));
+    connect(testButtons->getLastLocationButton, SIGNAL(clicked()), this, SLOT(onGetLastLocation()));
+    connect(testButtons->getHistoryButton, SIGNAL(clicked()), this, SLOT(onGetHistory()));
 }
 
 LoqiWindow::~LoqiWindow()
@@ -66,9 +68,6 @@ void LoqiWindow::doStuff()
     loqi->setToken(QString(permanent_token));
 /*
     loqi->getAuthToken(QString("jburrows"),QString("hehe"));
-    loqi->getProfile();
-    loqi->getLastLocation();
-    loqi->getHistory();
 */
 }
 
@@ -77,7 +76,22 @@ void LoqiWindow::onGetUsername() {
     connect(reply, SIGNAL(dataReady(QVariant, QGeoloqiReply*)), this, SLOT(appendText(QVariant,QGeoloqiReply*)));
 }
 
+void LoqiWindow::onGetProfile() {
+    QGeoloqiReply* reply = loqi->getProfile();
+    connect(reply, SIGNAL(dataReady(QVariant, QGeoloqiReply*)), this, SLOT(appendText(QVariant,QGeoloqiReply*)));
+}
+
+void LoqiWindow::onGetLastLocation() {
+    QGeoloqiReply* reply = loqi->getLastLocation();
+    connect(reply, SIGNAL(dataReady(QVariant, QGeoloqiReply*)), this, SLOT(appendText(QVariant,QGeoloqiReply*)));
+}
+
+void LoqiWindow::onGetHistory() {
+    QGeoloqiReply* reply = loqi->getHistory();
+    connect(reply, SIGNAL(dataReady(QVariant, QGeoloqiReply*)), this, SLOT(appendText(QVariant,QGeoloqiReply*)));
+}
+
 void LoqiWindow::appendText(QVariant text, QGeoloqiReply* reply) {
     outPut->append(QString(loqi->encodeJson(text)));
-    //reply->deleteLater();
+    reply->deleteLater();
 }
