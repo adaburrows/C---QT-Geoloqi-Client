@@ -8,9 +8,11 @@ SOURCES += main.cpp \
    loqiwindow.cpp \
    qgeoloqi.cpp \
    qgeoloqireply.cpp \
-    authdialog.cpp
+    authdialog.cpp \
+    apitestbuttons.cpp
 HEADERS += loqiwindow.h \
    qgeoloqi.h \
    qgeoloqireply.h \
-    authdialog.h
+    authdialog.h \
+    apitestbuttons.h
 LIBS += -lqjson

@@ -12,11 +12,21 @@ LoqiWindow::LoqiWindow(QWidget *parent)
     connect(editAuthKey,SIGNAL(triggered()),this,SLOT(showAuthDialog()));
     editMenu->addAction(editAuthKey);
     loqi = new QGeoloqi();
+    outPut = new QTextEdit();
+    //outPut->
+    setCentralWidget(outPut);
+    testButtons = new ApiTestButtons();
+    testButtonDock = new QDockWidget(tr("test buttons"));
+    testButtonDock->setWidget(testButtons);
+    testButtonDock->setAllowedAreas(Qt::LeftDockWidgetArea
+                                    | Qt::RightDockWidgetArea);
+    addDockWidget(Qt::RightDockWidgetArea,testButtonDock);
+
 }
 
 LoqiWindow::~LoqiWindow()
 {
-
+    delete authdialog;
 }
 
 void LoqiWindow::readSettings()
@@ -41,6 +51,7 @@ void LoqiWindow::authSave()
     permanent_token = authdialog->authEdit->text();
     settings->setValue("authkey",permanent_token);
     authdialog->hide();
+    doStuff();
 }
 void LoqiWindow::showAuthDialog()
 {

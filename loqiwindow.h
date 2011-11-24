@@ -7,8 +7,11 @@
 #include <QMenuBar>
 #include <QAction>
 #include <QString>
+#include <QTextEdit>
+#include <QDockWidget>
 #include "authdialog.h"
 #include "qgeoloqi.h"
+#include "apitestbuttons.h"
 
 class LoqiWindow : public QMainWindow
 {
@@ -25,6 +28,9 @@ public:
     QMenu *editMenu;
     QAction *editAuthKey;
     QString permanent_token;
+    QTextEdit *outPut;
+    ApiTestButtons *testButtons;
+    QDockWidget *testButtonDock;
 
 public slots:
     void authSave();
