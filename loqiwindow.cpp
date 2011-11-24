@@ -12,6 +12,7 @@ LoqiWindow::LoqiWindow(QWidget *parent)
     connect(editAuthKey,SIGNAL(triggered()),this,SLOT(showAuthDialog()));
     editMenu->addAction(editAuthKey);
     loqi = new QGeoloqi();
+    loqi->setToken(permanent_token);
     outPut = new QTextEdit();
     //outPut->
     setCentralWidget(outPut);
