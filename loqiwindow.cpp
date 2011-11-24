@@ -73,7 +73,7 @@ void LoqiWindow::doStuff()
 
 void LoqiWindow::onGetUsername() {
     QGeoloqiReply* reply = loqi->getUsername();
-    connect(reply, SIGNAL(finshed(QVariant, QGeoloqiReply*)), this, SLOT(appendText(QVariant,QGeoloqiReply*)));
+    connect(reply, SIGNAL(dataReady(QVariant, QGeoloqiReply*)), this, SLOT(appendText(QVariant,QGeoloqiReply*)));
 }
 
 void LoqiWindow::appendText(QVariant text, QGeoloqiReply* reply) {

@@ -63,7 +63,7 @@ void QGeoloqiReply::processReply() {
             case QNetworkAccessManager::PostOperation:
             case QNetworkAccessManager::DeleteOperation:
             default:
-                emit finished(content, this);
+                emit dataReady(content, this);
         }
     }
     this->reply->deleteLater();
