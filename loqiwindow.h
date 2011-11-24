@@ -40,6 +40,7 @@ public slots:
     void onGetProfile();
     void onGetLastLocation();
     void onGetHistory();
+    void onGetPlaces();
 
 private:
     QGeoloqi* loqi;

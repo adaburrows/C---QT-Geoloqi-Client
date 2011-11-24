@@ -16,6 +16,7 @@ public:
     QPushButton *getProfileButton;
     QPushButton *getLastLocationButton;
     QPushButton *getHistoryButton;
+    QPushButton *getPlacesButton;
 signals:
 
 public slots:

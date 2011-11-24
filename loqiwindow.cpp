@@ -27,6 +27,7 @@ LoqiWindow::LoqiWindow(QWidget *parent)
     connect(testButtons->getProfileButton, SIGNAL(clicked()), this, SLOT(onGetProfile()));
     connect(testButtons->getLastLocationButton, SIGNAL(clicked()), this, SLOT(onGetLastLocation()));
     connect(testButtons->getHistoryButton, SIGNAL(clicked()), this, SLOT(onGetHistory()));
+    connect(testButtons->getPlacesButton, SIGNAL(clicked()), this, SLOT(onGetPlaces()));
 }
 
 LoqiWindow::~LoqiWindow()
@@ -88,6 +89,12 @@ void LoqiWindow::onGetLastLocation() {
 
 void LoqiWindow::onGetHistory() {
     QGeoloqiReply* reply = loqi->getHistory();
+    connect(reply, SIGNAL(dataReady(QVariant, QGeoloqiReply*)), this, SLOT(appendText(QVariant,QGeoloqiReply*)));
+}
+
+
+void LoqiWindow::onGetPlaces() {
+    QGeoloqiReply* reply = loqi->getPlaces("","","");
     connect(reply, SIGNAL(dataReady(QVariant, QGeoloqiReply*)), this, SLOT(appendText(QVariant,QGeoloqiReply*)));
 }
 
