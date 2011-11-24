@@ -19,6 +19,10 @@ public:
     QGeoloqiReply* getProfile();
     QGeoloqiReply* getLastLocation();
     QGeoloqiReply* getHistory();
+    QGeoloqiReply* getPlaces(QString, QString , QString);
+    QGeoloqiReply* getNearbyPlaces(QString, QString , QString, QString);
+    QGeoloqiReply* getPlaceInfo(QString);
+    QGeoloqiReply* deletePlace(QString);
 
     QByteArray encodeJson(QVariant);
     QVariant decodeJson(QByteArray);
@@ -39,6 +43,8 @@ private:
     QString client_id;
     QString client_secret;
     void QGeoloqiCommon();
+    QGeoloqiReply* get(QUrl);
+    QGeoloqiReply* post(QUrl, QByteArray);
 };
 
 #endif // LOQICLIENT_H

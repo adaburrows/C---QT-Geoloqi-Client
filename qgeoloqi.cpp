@@ -27,7 +27,7 @@ void QGeoloqi::QGeoloqiCommon()
 }
 
 /*
- * API Methods
+ * Token Methods
  * ============================================================================
  */
 
@@ -41,6 +41,22 @@ void QGeoloqi::setClientSecret(QString client_secret) {
     this->client_secret = client_secret;
 }
 
+// Gets the token used by the QGeoloqi lib
+QString QGeoloqi::getToken() {
+    return this->token;
+}
+
+// Sets the token to be used by the QGeoloqi lib
+void QGeoloqi::setToken(QString token) {
+    this->token = token;
+}
+
+
+/*
+ * API Methods
+ * ============================================================================
+ */
+
 // Get the auth token using geoloqi username and password
 QGeoloqiReply* QGeoloqi::getAuthToken(QString user, QString pass) {
     // Set up the parameters fo be sen URL Encoded
@@ -53,44 +69,77 @@ QGeoloqiReply* QGeoloqi::getAuthToken(QString user, QString pass) {
     QByteArray payload = encodeUrlEncoded(payloadData);
 
     QUrl url = QUrl(this->api_url % QString("oauth/token"));
-    QNetworkRequest request = QNetworkRequest(url);
-    QNetworkReply* reply = manager->post(request,payload);
-    QGeoloqiReply* loqiply = new QGeoloqiReply(reply);
-    connect(reply, SIGNAL(finished()), loqiply, SLOT(processReply()));
-    return loqiply;
-}
-
-QString QGeoloqi::getToken() {
-    return this->token;
-}
-
-void QGeoloqi::setToken(QString token) {
-    this->token = token;
+    return post(url, payload);
 }
 
 QGeoloqiReply* QGeoloqi::getUsername() {
     QUrl url = QUrl(this->api_url % QString("account/username"));
     url.addQueryItem(QString("oauth_token"), this->token);
-    QNetworkRequest request = QNetworkRequest(url);
-    QNetworkReply* reply = manager->get(request);
-    QGeoloqiReply* loqiply = new QGeoloqiReply(reply);
-    connect(reply, SIGNAL(finished()), loqiply, SLOT(processReply()));
-    return loqiply;
+    return get(url);
 }
 
 QGeoloqiReply* QGeoloqi::getProfile() {
     QUrl url = QUrl(this->api_url % QString("account/profile"));
     url.addQueryItem(QString("oauth_token"), this->token);
-    QNetworkRequest request = QNetworkRequest(url);
-    QNetworkReply* reply = manager->get(request);
-    QGeoloqiReply* loqiply = new QGeoloqiReply(reply);
-    connect(reply, SIGNAL(finished()), loqiply, SLOT(processReply()));
-    return loqiply;
+    return get(url);
 }
 
 QGeoloqiReply* QGeoloqi::getLastLocation() {
     QUrl url = QUrl(this->api_url % QString("location/last"));
     url.addQueryItem(QString("oauth_token"), this->token);
+    return get(url);
+}
+
+QGeoloqiReply* QGeoloqi::getHistory() {
+    QUrl url = QUrl(this->api_url % QString("location/history"));
+    url.addQueryItem(QString("oauth_token"), this->token);
+    return get(url);
+}
+
+QGeoloqiReply* QGeoloqi::getPlaces(QString layer_id = "", QString include_unnamed = "", QString sort = "") {
+    QUrl url = QUrl(this->api_url % QString("place/list"));
+    url.addQueryItem(QString("oauth_token"), this->token);
+    if (layer_id != "")
+        url.addQueryItem(QString("layer_id"), layer_id);
+    if (include_unnamed != "")
+        url.addQueryItem(QString("include_unnamed"), include_unnamed);
+    if (sort != "")
+        url.addQueryItem(QString("sort"), sort);
+    return get(url);
+}
+
+QGeoloqiReply* QGeoloqi::getNearbyPlaces(QString latitude = "", QString longitude = "", QString layer_id = "", QString distance = "") {
+    QUrl url = QUrl(this->api_url % QString("place/nearby"));
+    url.addQueryItem(QString("oauth_token"), this->token);
+    if (latitude != "")
+        url.addQueryItem(QString("latitude"), latitude);
+    if (longitude != "")
+        url.addQueryItem(QString("longitude"), longitude);
+    if (layer_id != "")
+        url.addQueryItem(QString("layer_id"), layer_id);
+    if (distance != "")
+        url.addQueryItem(QString("distance"), distance);
+    return get(url);
+}
+
+QGeoloqiReply* QGeoloqi::getPlaceInfo(QString id) {
+    QUrl url = QUrl(this->api_url % QString("place/info/") % id);
+    url.addQueryItem(QString("oauth_token"), this->token);
+    return get(url);
+}
+
+QGeoloqiReply* QGeoloqi::deletePlace(QString id) {
+    QUrl url = QUrl(this->api_url % QString("place/delete/") % id);
+    url.addQueryItem(QString("oauth_token"), this->token);
+    return post(url, QByteArray());
+}
+
+/*
+ * HTTP verbs
+ * ============================================================================
+ */
+
+QGeoloqiReply* QGeoloqi::get(QUrl url) {
     QNetworkRequest request = QNetworkRequest(url);
     QNetworkReply* reply = manager->get(request);
     QGeoloqiReply* loqiply = new QGeoloqiReply(reply);
@@ -98,11 +147,9 @@ QGeoloqiReply* QGeoloqi::getLastLocation() {
     return loqiply;
 }
 
-QGeoloqiReply* QGeoloqi::getHistory() {
-    QUrl url = QUrl(this->api_url % QString("location/history"));
-    url.addQueryItem(QString("oauth_token"), this->token);
+QGeoloqiReply* QGeoloqi::post(QUrl url, QByteArray payload) {
     QNetworkRequest request = QNetworkRequest(url);
-    QNetworkReply* reply = manager->get(request);
+    QNetworkReply* reply = manager->post(request, payload);
     QGeoloqiReply* loqiply = new QGeoloqiReply(reply);
     connect(reply, SIGNAL(finished()), loqiply, SLOT(processReply()));
     return loqiply;
