@@ -35,6 +35,9 @@ public:
 public slots:
     void authSave();
     void showAuthDialog();
+    void appendText(QVariant, QGeoloqiReply*);
+    void onGetUsername();
+
 
 private:
     QGeoloqi* loqi;

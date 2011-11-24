@@ -22,6 +22,8 @@ LoqiWindow::LoqiWindow(QWidget *parent)
                                     | Qt::RightDockWidgetArea);
     addDockWidget(Qt::RightDockWidgetArea,testButtonDock);
 
+    connect(testButtons->getUsernameButton, SIGNAL(clicked()), this, SLOT(onGetUsername()));
+
 }
 
 LoqiWindow::~LoqiWindow()
@@ -60,10 +62,21 @@ void LoqiWindow::showAuthDialog()
 
 void LoqiWindow::doStuff()
 {
-    loqi->getAuthToken(QString("jburrows"),QString("hehe"));
     loqi->setToken(QString(permanent_token));
-    loqi->getUsername();
+/*
+    loqi->getAuthToken(QString("jburrows"),QString("hehe"));
     loqi->getProfile();
     loqi->getLastLocation();
     loqi->getHistory();
+*/
+}
+
+void LoqiWindow::onGetUsername() {
+    QGeoloqiReply* reply = loqi->getUsername();
+    connect(reply, SIGNAL(finshed(QVariant, QGeoloqiReply*)), this, SLOT(appendText(QVariant,QGeoloqiReply*)));
+}
+
+void LoqiWindow::appendText(QVariant text, QGeoloqiReply* reply) {
+    outPut->append(QString(loqi->encodeJson(text)));
+    //reply->deleteLater();
 }

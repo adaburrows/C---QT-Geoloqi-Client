@@ -27,7 +27,7 @@ public:
 public slots:
     void processReply();
 signals:
-    void finished(QVariantMap);
+    void finished(QVariant, QGeoloqiReply*);
     void error();
 private:
     QNetworkReply* reply;

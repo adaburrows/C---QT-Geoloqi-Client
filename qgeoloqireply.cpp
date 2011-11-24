@@ -40,9 +40,6 @@ void QGeoloqiReply::processReply() {
     QTextStream out(stdout);
     QVariant content;
 
-    // Get the original request to see what request type this reply is for
-    QNetworkRequest request = this->reply->request();
-
     // Read in the response and check content
     QByteArray response = this->reply->readAll();
     //out << QString(response);
@@ -59,7 +56,6 @@ void QGeoloqiReply::processReply() {
     }
     // If we've gotten valid content, process it and dispatch the signal
     if (content.isValid()) {
-        QVariantMap data = content.toMap();
         // Each operation responds to a different signal
         switch (this->reply->operation()) {
             case QNetworkAccessManager::GetOperation:
@@ -67,7 +63,7 @@ void QGeoloqiReply::processReply() {
             case QNetworkAccessManager::PostOperation:
             case QNetworkAccessManager::DeleteOperation:
             default:
-                emit finished(data);
+                emit finished(content, this);
         }
     }
     this->reply->deleteLater();
